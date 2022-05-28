@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background:url('https://steamuserimages-a.akamaihd.net/ugc/1771572741903125825/D49869136E1D5DA74F7F0E95213A2CB8FF8FD43B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 code {
