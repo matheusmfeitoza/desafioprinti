@@ -5,8 +5,8 @@ export const AppStyle = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 40rem;
   width: 600px;
+  padding: 3rem;
   margin: 30px auto;
   background-color: #fb3a;
   border-radius: 30px;

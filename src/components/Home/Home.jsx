@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import md5 from "md5";
 import { useState } from "react";
-import { AppStyle } from "../../styles/AppStyle.js";
+import { HomeStyle } from "./HomeStyle";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -33,7 +33,7 @@ const Home = () => {
       .catch((err) => console.log(err));
   };
   return (
-    <AppStyle>
+    <HomeStyle>
       <h1>Bem vindo(a) ao Marvel Hero Library</h1>
       <p>
         Para usar a biblioteca de hero's você precisa de uma chave de acesso.
@@ -42,7 +42,7 @@ const Home = () => {
         Você consegue gerar a sua chave neste link:{" "}
         <a href="https://developer.marvel.com/">Developers Marvel</a>
       </p>
-      <div>
+      <div className="userInput">
         <input
           type="text"
           name="privateK"
@@ -65,12 +65,7 @@ const Home = () => {
           Acessar
         </Link>
       </div>
-
-      <div>
-        <p>Ficou com preguiça? Use aqui!</p>
-        <button onClick={buscaDados}>Buscar dados</button>
-      </div>
-    </AppStyle>
+    </HomeStyle>
   );
 };
 
