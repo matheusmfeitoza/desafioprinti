@@ -1,36 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import md5 from "md5";
 import { useState } from "react";
 import { HomeStyle } from "./HomeStyle";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const Home = () => {
   const [privateK, setPrivateK] = useState("");
   const [publicK, setpublicK] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const { data, setData } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const date = new Date();
   const ts = Number(date);
-  const publicKey = "b83baa32416c0632516542796eda226f";
-  const privateKey = "97b9c6b1efb1f68fca9897d41ad1a48a172b20ed";
-  const hash = md5(ts + privateKey + publicKey);
   const userHash = md5(ts + privateK + publicK);
 
-  const URL_BASE = `http://gateway.marvel.com/v1/public/characters?&limit=40&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
   const USER_URL_BASE =
-    "http://gateway.marvel.com/v1/public/characters?&limit=40";
-  const buscaDados = () => {
-    axios
-      .get(URL_BASE)
-      .then((response) => console.log(response))
-      .catch((er) => console.log(er));
-  };
+    "http://gateway.marvel.com/v1/public/characters?&limit=10";
 
   const handleUserGetApi = () => {
-    axios
-      .get(`${USER_URL_BASE}&ts=${ts}&apikey=${publicK}&hash=${userHash}`)
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err));
+    if (privateK.length != 0) {
+      axios
+        .get(`${USER_URL_BASE}&ts=${ts}&apikey=${publicK}&hash=${userHash}`)
+        .then((response) => setData(response))
+        .catch((err) => console.log(err));
+      navigate("/champions");
+    }
   };
   return (
     <HomeStyle>
@@ -61,10 +59,10 @@ const Home = () => {
             setpublicK(e.target.value);
           }}
         />
-        <Link onClick={handleUserGetApi} to="/champions">
-          Acessar
-        </Link>
+        <button onClick={handleUserGetApi}>Acessar</button>
       </div>
+
+      <div>{error && <p>{error}</p>}</div>
     </HomeStyle>
   );
 };

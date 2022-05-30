@@ -1,14 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
-import Champion from "./components/Champion/Champion";
+import Champions from "./components/Champions/Champions";
+import Champion from "./components/Champions/Champion";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/champions/*" element={<Champion />} />
-      </Routes>
+      <UserProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/champions" element={<Champions />} />
+          <Route path="/champions/*" element={<Champion />} />
+        </Routes>
+      </UserProvider>
     </BrowserRouter>
   );
 }

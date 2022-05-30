@@ -43,7 +43,7 @@ export const HomeStyle = styled.section`
     text-align: center;
   }
 
-  .userInput a {
+  .userInput button {
     text-decoration: none;
     background-color: #a73429;
     padding: 5px;
@@ -53,9 +53,10 @@ export const HomeStyle = styled.section`
     text-align: center;
     cursor: pointer;
     transition: 0.3s;
+    border: none;
   }
 
-  .userInput a:hover {
+  .userInput button:hover {
     background-color: #a73476;
   }
 
