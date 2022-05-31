@@ -35,8 +35,8 @@ const Home = () => {
           dispatch(setHeroesDataSucess({ heroes: results, total }));
           navigate("/champions");
         })
-        .catch((err) =>
-          dispatch(setHeroesDataFailure({ message: err.message }))
+        .catch(({ response }) =>
+          dispatch(setHeroesDataFailure({ message: response.data.message }))
         );
     }
   };
