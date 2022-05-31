@@ -6,6 +6,7 @@ export const heroesStore = createSlice({
     heroes: [],
     total: 0,
     isLoading: false,
+    isLogged: false,
     hasError: false,
     errorMessage: "",
   },
@@ -16,6 +17,7 @@ export const heroesStore = createSlice({
         heroes: action.payload.heroes,
         isLoading: false,
         hasError: false,
+        isLogged: true,
         errorMessage: "",
         total: action.payload.total,
       };

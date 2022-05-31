@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Section, Main } from "./ChampionsStyle";
 import ReactPaginate from "react-paginate";
 import { useSelector } from "react-redux";
 
 const Champions = ({ itemsPerPage = 5 }) => {
-  const { heroes } = useSelector((state) => state.heroes);
+  const navigate = useNavigate();
+  const { heroes, isLogged } = useSelector((state) => state.heroes);
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   // Here we use item offsets; we could also use page offsets
@@ -14,10 +15,14 @@ const Champions = ({ itemsPerPage = 5 }) => {
 
   useEffect(() => {
     // Fetch items from another resources.
-    const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems(heroes.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(heroes.length / itemsPerPage));
+    if (isLogged) {
+      const endOffset = itemOffset + itemsPerPage;
+      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+      setCurrentItems(heroes.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(heroes.length / itemsPerPage));
+    } else {
+      navigate("/");
+    }
   }, [itemOffset, itemsPerPage]);
 
   const handlePageClick = (event) => {
