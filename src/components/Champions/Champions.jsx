@@ -88,7 +88,11 @@ const Champions = ({ itemsPerPage = 5 }) => {
           ))}
         </table>
         <div className="pagination">
-          <button onClick={handleGetPrevHeroesList}>Anterior</button>
+          {pagination == 1 ? (
+            <button disabled>Anterior</button>
+          ) : (
+            <button onClick={handleGetPrevHeroesList}>Anterior</button>
+          )}
           <button onClick={handleGetNextHeroesList}>Próximo</button>
         </div>
       </Main>
