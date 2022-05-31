@@ -1,14 +1,35 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
 import { Section, Main } from "./ChampionsStyle";
 import ReactPaginate from "react-paginate";
+import { useSelector } from "react-redux";
 
-const Champions = () => {
-  const { data } = useContext(UserContext);
-  console.log(data);
+const Champions = ({ itemsPerPage = 5 }) => {
+  const { heroes } = useSelector((state) => state.heroes);
+  const [currentItems, setCurrentItems] = useState(null);
+  const [pageCount, setPageCount] = useState(0);
+  // Here we use item offsets; we could also use page offsets
+  // following the API or data you're working with.
+  const [itemOffset, setItemOffset] = useState(0);
+
+  useEffect(() => {
+    // Fetch items from another resources.
+    const endOffset = itemOffset + itemsPerPage;
+    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    setCurrentItems(heroes.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(heroes.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % heroes.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+
   return (
-    <Main>
+    <>
       <table>
         <thead>
           <tr>
@@ -17,20 +38,30 @@ const Champions = () => {
             <th>Modified</th>
           </tr>
         </thead>
-        {data &&
-          data.data.data.results.map((hero) => (
-            <tbody key={hero.id}>
-              <tr>
-                <td>
-                  <Link to={`${hero.id}`}>{hero.name}</Link>
-                </td>
-                <td>{hero.description}</td>
-                <td>{hero.modified}</td>
-              </tr>
-            </tbody>
-          ))}
+        {heroes.map((hero) => (
+          <tbody key={hero.id}>
+            <tr>
+              <td>
+                <Link to={`${hero.id}`}>{hero.name}</Link>
+              </td>
+              <td>{hero.description}</td>
+              <td>{hero.modified}</td>
+            </tr>
+          </tbody>
+        ))}
       </table>
-    </Main>
+
+      {heroes && (
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="Próximo"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          renderOnZeroPageCount={null}
+        />
+      )}
+    </>
   );
 };
 

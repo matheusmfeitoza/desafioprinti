@@ -1,33 +1,43 @@
-import React, { useContext } from "react";
-import axios from "axios";
+import React from "react";
 import md5 from "md5";
 import { useState } from "react";
 import { HomeStyle } from "./HomeStyle";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
+import { getHeroes } from "../../services/ApiHeroes";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setHeroesDataFailure,
+  setHeroesDataSucess,
+  setHeroIsLoading,
+} from "../../store/heroes";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const { hasError, errorMessage, isLoading } = useSelector(
+    (state) => state.heroes
+  );
+
   const [privateK, setPrivateK] = useState("");
   const [publicK, setpublicK] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const { data, setData } = useContext(UserContext);
   const navigate = useNavigate();
 
   const date = new Date();
   const ts = Number(date);
   const userHash = md5(ts + privateK + publicK);
 
-  const USER_URL_BASE =
-    "http://gateway.marvel.com/v1/public/characters?&limit=10";
-
-  const handleUserGetApi = () => {
+  const handleUserGetApi = (event) => {
+    event.preventDefault();
+    dispatch(setHeroIsLoading({ isLoading: true }));
     if (privateK.length != 0) {
-      axios
-        .get(`${USER_URL_BASE}&ts=${ts}&apikey=${publicK}&hash=${userHash}`)
-        .then((response) => setData(response))
-        .catch((err) => console.log(err));
-      navigate("/champions");
+      getHeroes({ apikey: publicK, hash: userHash, ts })
+        .then(({ data }) => data)
+        .then(({ results, total }) => {
+          dispatch(setHeroesDataSucess({ heroes: results, total }));
+          navigate("/champions");
+        })
+        .catch((err) =>
+          dispatch(setHeroesDataFailure({ message: err.message }))
+        );
     }
   };
   return (
@@ -40,29 +50,35 @@ const Home = () => {
         Você consegue gerar a sua chave neste link:{" "}
         <a href="https://developer.marvel.com/">Developers Marvel</a>
       </p>
-      <div className="userInput">
-        <input
-          type="text"
-          name="privateK"
-          id="privateK"
-          placeholder="Informe sua chave privada"
-          value={privateK}
-          onChange={(e) => setPrivateK(e.target.value)}
-        />
-        <input
-          type="text"
-          name="publicK"
-          id="publicK"
-          placeholder="Informe sua chave publica"
-          value={publicK}
-          onChange={(e) => {
-            setpublicK(e.target.value);
-          }}
-        />
-        <button onClick={handleUserGetApi}>Acessar</button>
-      </div>
+      <div>
+        <form className="userInput" onSubmit={handleUserGetApi}>
+          <input
+            type="text"
+            name="privateK"
+            id="privateK"
+            placeholder="Informe sua chave privada"
+            value={privateK}
+            onChange={(e) => setPrivateK(e.target.value)}
+          />
+          <input
+            type="text"
+            name="publicK"
+            id="publicK"
+            placeholder="Informe sua chave publica"
+            value={publicK}
+            onChange={(e) => {
+              setpublicK(e.target.value);
+            }}
+          />
+          {isLoading ? (
+            <button disabled>Carregando...</button>
+          ) : (
+            <button>Acessar</button>
+          )}
+        </form>
 
-      <div>{error && <p>{error}</p>}</div>
+        {hasError && <p>{errorMessage}</p>}
+      </div>
     </HomeStyle>
   );
 };
