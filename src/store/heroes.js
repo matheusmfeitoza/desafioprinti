@@ -8,6 +8,10 @@ export const heroesStore = createSlice({
     isLoading: false,
     isLogged: false,
     hasError: false,
+    publicK: "",
+    privateK: "",
+    ts: 0,
+    hash: "",
     errorMessage: "",
   },
   reducers: {
@@ -15,6 +19,10 @@ export const heroesStore = createSlice({
       return {
         ...state,
         heroes: action.payload.heroes,
+        publicK: action.payload.publicK,
+        privateK: action.payload.privateK,
+        ts: action.payload.ts,
+        hash: action.payload.hash,
         isLoading: false,
         hasError: false,
         isLogged: true,

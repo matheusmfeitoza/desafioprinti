@@ -32,7 +32,16 @@ const Home = () => {
       getHeroes({ apikey: publicK, hash: userHash, ts })
         .then(({ data }) => data)
         .then(({ results, total }) => {
-          dispatch(setHeroesDataSucess({ heroes: results, total }));
+          dispatch(
+            setHeroesDataSucess({
+              heroes: results,
+              total,
+              privateK,
+              publicK,
+              ts,
+              hash: userHash,
+            })
+          );
           navigate("/champions");
         })
         .catch(({ response }) =>

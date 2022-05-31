@@ -3,12 +3,45 @@ import styled from "styled-components";
 export const Section = styled.section``;
 
 export const Main = styled.main`
-  display: grid;
-  grid-template-columns: 200px 1fr 200px;
-  color: white;
-  margin: 0 30px;
+  display: block;
+  background-color: white;
+  max-width: 800px;
+  max-height: 90vh;
+  padding: 10px;
+  border-radius: 5px;
 
-  li {
-    list-style: none;
+  table,
+  th,
+  td {
+    border: 1px solid #333;
+  }
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  th,
+  td {
+    padding: 5px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: red;
+  }
+  .pagination {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .pagination button {
+    padding: 10px;
+    border: none;
+    background-color: #eee;
+    border-radius: 5px;
+    cursor: pointer;
   }
 `;
