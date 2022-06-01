@@ -50,6 +50,22 @@ export const heroesStore = createSlice({
         ts: action.payload.ts,
       };
     },
+    setHeroComicsSucess: (state, action) => {
+      return {
+        ...state,
+        comics: action.payload.comics,
+        isLoading: false,
+        hasError: false,
+        errorMessage: "",
+      };
+    },
+    setHeroComicsFailure: (state, action) => {
+      return {
+        ...state,
+        hasError: true,
+        errorMessage: action.payload.message,
+      };
+    },
   },
 });
 
@@ -58,6 +74,8 @@ export const {
   setHeroesDataFailure,
   setHeroIsLoading,
   setApiValues,
+  setHeroComicsSucess,
+  setHeroComicsFailure,
 } = heroesStore.actions;
 
 export const heroesReducer = heroesStore.reducer;

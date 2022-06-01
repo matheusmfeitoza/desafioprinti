@@ -6,9 +6,9 @@ export const Main = styled.main`
   display: block;
   background-color: white;
   max-width: 800px;
-  max-height: 90vh;
   padding: 10px;
   border-radius: 5px;
+  margin: 80px auto;
 
   table,
   th,
