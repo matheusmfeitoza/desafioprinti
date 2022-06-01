@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { getHeroes } from "../../services/ApiHeroes";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setApiValues,
   setHeroesDataFailure,
   setHeroesDataSucess,
   setHeroIsLoading,
@@ -36,10 +37,14 @@ const Home = () => {
             setHeroesDataSucess({
               heroes: results,
               total,
-              privateK,
+            })
+          );
+          dispatch(
+            setApiValues({
               publicK,
-              ts,
+              privateK,
               hash: userHash,
+              ts,
             })
           );
           navigate("/champions");

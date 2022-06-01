@@ -4,6 +4,7 @@ export const heroesStore = createSlice({
   name: "heroes",
   initialState: {
     heroes: [],
+    comics: [],
     total: 0,
     isLoading: false,
     isLogged: false,
@@ -19,10 +20,6 @@ export const heroesStore = createSlice({
       return {
         ...state,
         heroes: action.payload.heroes,
-        publicK: action.payload.publicK,
-        privateK: action.payload.privateK,
-        ts: action.payload.ts,
-        hash: action.payload.hash,
         isLoading: false,
         hasError: false,
         isLogged: true,
@@ -44,10 +41,23 @@ export const heroesStore = createSlice({
         isLoading: true,
       };
     },
+    setApiValues: (state, action) => {
+      return {
+        ...state,
+        publicK: action.payload.publicK,
+        privateK: action.payload.privateK,
+        hash: action.payload.hash,
+        ts: action.payload.ts,
+      };
+    },
   },
 });
 
-export const { setHeroesDataSucess, setHeroesDataFailure, setHeroIsLoading } =
-  heroesStore.actions;
+export const {
+  setHeroesDataSucess,
+  setHeroesDataFailure,
+  setHeroIsLoading,
+  setApiValues,
+} = heroesStore.actions;
 
 export const heroesReducer = heroesStore.reducer;

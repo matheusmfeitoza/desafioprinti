@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Section, Main } from "./ChampionsStyle";
+import { Main } from "./ChampionsStyle";
 import { useSelector, useDispatch } from "react-redux";
 import { getHeroes } from "../../services/ApiHeroes";
 import { setHeroesDataSucess, setHeroIsLoading } from "../../store/heroes";
@@ -8,7 +8,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 let pagination = 1;
-const Champions = ({ itemsPerPage = 5 }) => {
+const Champions = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { heroes, isLogged, total, privateK, publicK, ts, hash, isLoading } =
@@ -22,7 +22,7 @@ const Champions = ({ itemsPerPage = 5 }) => {
   }, []);
 
   const handleGetNextHeroesList = () => {
-    pagination = pagination + 1;
+    pagination = pagination + 10;
     dispatch(setHeroIsLoading());
     getHeroes({ apikey: publicK, hash, ts, page: pagination })
       .then(({ data }) => data)
@@ -32,6 +32,10 @@ const Champions = ({ itemsPerPage = 5 }) => {
             setHeroesDataSucess({
               heroes: results,
               total,
+            })
+          );
+          dispatch(
+            setApiValues({
               privateK: privateK,
               publicK: publicK,
               ts: ts,
@@ -44,8 +48,8 @@ const Champions = ({ itemsPerPage = 5 }) => {
 
   const handleGetPrevHeroesList = () => {
     dispatch(setHeroIsLoading());
-    if (pagination >= 1) {
-      pagination = pagination - 1;
+    if (pagination >= 10) {
+      pagination = pagination - 10;
     } else pagination = 1;
     if (pagination >= 1) {
       getHeroes({ apikey: publicK, hash, ts, page: pagination })
@@ -56,6 +60,10 @@ const Champions = ({ itemsPerPage = 5 }) => {
               setHeroesDataSucess({
                 heroes: results,
                 total,
+              })
+            );
+            dispatch(
+              setApiValues({
                 privateK: privateK,
                 publicK: publicK,
                 ts: ts,

@@ -13,3 +13,15 @@ export const getHeroes = async ({ apikey, hash, ts, page = 1 }) => {
 
   return data;
 };
+
+export const getHeroComics = async ({ apikey, hash, ts }, heroId) => {
+  const marvelApiHeroComics = `http://gateway.marvel.com/v1/public/characters/${heroId}/comics`;
+  const { data } = await axios.get(marvelApiHeroComics, {
+    params: {
+      apikey,
+      hash,
+      ts,
+    },
+  });
+  return data;
+};
