@@ -8,32 +8,37 @@ import {
   ComicsImgWrapper,
 } from "./ChampionStyle";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getHeroComics } from "../../services/ApiHeroes";
 import { setHeroComicsFailure, setHeroComicsSucess } from "../../store/heroes";
 
 const Champion = () => {
-  const { heroes, publicK, ts, hash, comics } = useSelector(
+  const { heroes, publicK, ts, hash, comics, isLogged } = useSelector(
     (state) => state.heroes
   );
   const dispatch = useDispatch();
   const location = useParams();
-
+  const navigate = useNavigate();
   const heroSelected = heroes.filter((hero) => hero.id == location.id);
   React.useEffect(() => {
-    getHeroComics({ apikey: publicK, ts, hash }, location.id)
-      .then(({ data }) => data)
-      .then(({ results }) =>
-        dispatch(
-          setHeroComicsSucess({
-            comics: results,
-          })
+    if (isLogged) {
+      getHeroComics({ apikey: publicK, ts, hash }, location.id)
+        .then(({ data }) => data)
+        .then(({ results }) =>
+          dispatch(
+            setHeroComicsSucess({
+              comics: results,
+            })
+          )
         )
-      )
-      .catch(({ response }) =>
-        dispatch(setHeroComicsFailure({ message: response.data.message }))
-      );
+        .catch(({ response }) =>
+          dispatch(setHeroComicsFailure({ message: response.data.message }))
+        );
+    } else {
+      navigate("/");
+    }
   }, []);
+  if (isLogged === false) return null;
   return (
     <ContainerChamp>
       <SectionChamp>

@@ -11,7 +11,7 @@ let pagination = 1;
 const Champions = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { heroes, isLogged, total, privateK, publicK, ts, hash, isLoading } =
+  const { heroes, isLogged, privateK, publicK, ts, hash, isLoading } =
     useSelector((state) => state.heroes);
 
   useEffect(() => {
@@ -43,7 +43,10 @@ const Champions = () => {
             })
           );
         }
-      });
+      })
+      .catch(({ response }) =>
+        dispatch(setHeroesDataFailure({ message: response.data.message }))
+      );
   };
 
   const handleGetPrevHeroesList = () => {
@@ -71,7 +74,10 @@ const Champions = () => {
               })
             );
           }
-        });
+        })
+        .catch(({ response }) =>
+          dispatch(setHeroesDataFailure({ message: response.data.message }))
+        );
     }
   };
   return (
