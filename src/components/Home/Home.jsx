@@ -55,45 +55,47 @@ const Home = () => {
     }
   };
   return (
-    <HomeStyle>
-      <h1>Bem vindo(a) ao Marvel Hero Library</h1>
-      <p>
-        Para usar a biblioteca de hero's você precisa de uma chave de acesso.
-      </p>
-      <p>
-        Você consegue gerar a sua chave neste link:{" "}
-        <a href="https://developer.marvel.com/">Developers Marvel</a>
-      </p>
-      <div>
-        <form className="userInput" onSubmit={handleUserGetApi}>
-          <input
-            type="text"
-            name="privateK"
-            id="privateK"
-            placeholder="Informe sua chave privada"
-            value={privateK}
-            onChange={(e) => setPrivateK(e.target.value)}
-          />
-          <input
-            type="text"
-            name="publicK"
-            id="publicK"
-            placeholder="Informe sua chave publica"
-            value={publicK}
-            onChange={(e) => {
-              setpublicK(e.target.value);
-            }}
-          />
-          {isLoading ? (
-            <button disabled>Carregando...</button>
-          ) : (
-            <button>Acessar</button>
-          )}
-        </form>
+    <div className="container">
+      <HomeStyle>
+        <h1>Bem vindo(a) ao Marvel Hero Library</h1>
+        <p>
+          Para usar a biblioteca de hero's você precisa de uma chave de acesso.
+        </p>
+        <p>
+          Você consegue gerar a sua chave neste link:{" "}
+          <a href="https://developer.marvel.com/">Developers Marvel</a>
+        </p>
+        <div>
+          <form className="userInput" onSubmit={handleUserGetApi}>
+            <input
+              type="text"
+              name="privateK"
+              id="privateK"
+              placeholder="Informe sua chave privada"
+              value={privateK}
+              onChange={(e) => setPrivateK(e.target.value)}
+            />
+            <input
+              type="text"
+              name="publicK"
+              id="publicK"
+              placeholder="Informe sua chave publica"
+              value={publicK}
+              onChange={(e) => {
+                setpublicK(e.target.value);
+              }}
+            />
+            {isLoading ? (
+              <button disabled>Carregando...</button>
+            ) : (
+              <button>Acessar</button>
+            )}
+          </form>
 
-        {hasError && <p>{errorMessage}</p>}
-      </div>
-    </HomeStyle>
+          {hasError && <p>{errorMessage}</p>}
+        </div>
+      </HomeStyle>
+    </div>
   );
 };
 

@@ -7,7 +7,6 @@ export const HomeStyle = styled.section`
   align-items: center;
   width: 700px;
   padding: 3rem;
-  margin: 30px auto;
   background-color: rgba(0, 20, 30, 0.5);
   border-radius: 30px;
   color: white;
@@ -68,5 +67,17 @@ export const HomeStyle = styled.section`
     .userInput {
       width: 100px;
     }
+  }
+  .teste {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    height: 100vh;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
   }
 `;
