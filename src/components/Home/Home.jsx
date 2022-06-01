@@ -1,7 +1,7 @@
 import React from "react";
 import md5 from "md5";
 import { useState } from "react";
-import { HomeStyle } from "./HomeStyle";
+import { HomeStyle, Container } from "./HomeStyle";
 import { useNavigate } from "react-router-dom";
 import { getHeroes } from "../../services/ApiHeroes";
 import { useDispatch, useSelector } from "react-redux";
@@ -55,7 +55,7 @@ const Home = () => {
     }
   };
   return (
-    <div className="container">
+    <Container>
       <HomeStyle>
         <h1>Bem vindo(a) ao Marvel Hero Library</h1>
         <p>
@@ -95,7 +95,7 @@ const Home = () => {
           {hasError && <p>{errorMessage}</p>}
         </div>
       </HomeStyle>
-    </div>
+    </Container>
   );
 };
 

@@ -73,11 +73,12 @@ export const HomeStyle = styled.section`
     justify-content: center;
     align-items: center;
   }
-  .container {
-    height: 100vh;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-  }
+`;
+
+export const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 `;

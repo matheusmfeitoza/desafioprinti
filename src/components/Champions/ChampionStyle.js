@@ -23,6 +23,10 @@ export const SectionChamp = styled.section`
     height: 60px;
     align-self: flex-end;
   }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 export const ContainerChamp = styled.div`
   background-color: #eee;
