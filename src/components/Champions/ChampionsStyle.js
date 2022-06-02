@@ -13,7 +13,6 @@ export const Main = styled.main`
   border-radius: 5px;
   margin-top: 100px;
   margin-bottom: 100px;
-  height: 100vh;
 
   table,
   th,

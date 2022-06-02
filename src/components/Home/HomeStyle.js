@@ -82,3 +82,9 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const ErrorMsg = styled.p`
+  font-size: 0.875rem;
+  color: red;
+  line-height: 1.1;
+`;
