@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Main } from "./ChampionsStyle";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,8 +15,7 @@ const Champions = () => {
     useSelector((state) => state.heroes);
 
   useEffect(() => {
-    if (isLogged) {
-    } else {
+    if (!isLogged) {
       navigate("/");
     }
   }, []);

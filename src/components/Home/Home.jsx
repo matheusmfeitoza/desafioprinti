@@ -1,4 +1,3 @@
-import React from "react";
 import md5 from "md5";
 import { useState } from "react";
 import { HomeStyle, Container } from "./HomeStyle";
@@ -59,7 +58,7 @@ const Home = () => {
       <HomeStyle>
         <h1>Bem vindo(a) ao Marvel Hero Library</h1>
         <p>
-          Para usar a biblioteca de hero's você precisa de uma chave de acesso.
+          Para usar a biblioteca de heros você precisa de uma chave de acesso.
         </p>
         <p>
           Você consegue gerar a sua chave neste link:{" "}

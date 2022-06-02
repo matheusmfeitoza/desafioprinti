@@ -3,12 +3,17 @@ import styled from "styled-components";
 export const Section = styled.section``;
 
 export const Main = styled.main`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: white;
   max-width: 800px;
   padding: 10px;
   border-radius: 5px;
-  margin: 80px auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  height: 100vh;
 
   table,
   th,
@@ -18,6 +23,7 @@ export const Main = styled.main`
   table {
     border-collapse: collapse;
     table-layout: fixed;
+    height: 100%;
   }
   th,
   td {
