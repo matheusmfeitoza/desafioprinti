@@ -56,7 +56,8 @@ export const Table = styled.table`
     text-align: center;
     border: 1px solid white;
     font-size: 0.9rem;
-    text-align: center;
+    text-align: justify;
+    text-justify: inter-word;
   }
 
   a {
