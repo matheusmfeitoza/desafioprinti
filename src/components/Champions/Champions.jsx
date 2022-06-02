@@ -95,9 +95,9 @@ const Champions = () => {
           <table className="tableStyle">
             <thead>
               <tr>
-                <th>Hero</th>
-                <th>Description</th>
-                <th>Modified</th>
+                <th>Herói</th>
+                <th>Descrição</th>
+                <th>Última modificação</th>
               </tr>
             </thead>
             {heroes.map((hero) => (
