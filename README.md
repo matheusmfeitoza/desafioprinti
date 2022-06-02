@@ -10,6 +10,7 @@ The challenge is to consume the Marvel API, return your Heroes and also be able 
 > Reactjs
 
 > Redux
+
 > Redux ToolKit
 
 > Axios
