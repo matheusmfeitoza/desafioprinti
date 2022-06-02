@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Main } from "./ChampionsStyle";
+import { Main, Table } from "./ChampionsStyle";
 import { useSelector, useDispatch } from "react-redux";
 import { getHeroes } from "../../services/ApiHeroes";
 import {
@@ -16,7 +16,7 @@ let pagination = 1;
 export const Champions = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { heroes, isLogged, privateK, publicK, ts, hash, isLoading } =
+  const { heroes, isLogged, privateK, publicK, ts, hash, isLoading, total } =
     useSelector((state) => state.heroes);
 
   useEffect(() => {
@@ -85,14 +85,14 @@ export const Champions = () => {
     }
   };
   return (
-    <>
+    <Main>
       {isLoading ? (
         <SkeletonTheme baseColor="#fff" highlightColor="#444" width={100}>
           <Skeleton count={10} />
         </SkeletonTheme>
       ) : (
-        <Main>
-          <table className="tableStyle">
+        <>
+          <Table>
             <thead>
               <tr>
                 <th>Herói</th>
@@ -106,22 +106,34 @@ export const Champions = () => {
                   <td>
                     <Link to={`${hero.id}`}>{hero.name}</Link>
                   </td>
-                  <td>{hero.description}</td>
+                  {hero.description != "" ? (
+                    <td>{hero.description}</td>
+                  ) : (
+                    <td>Descrição indisponível</td>
+                  )}
+
                   <td>{hero.modified}</td>
                 </tr>
               </tbody>
             ))}
-          </table>
+          </Table>
           <div className="pagination">
-            {pagination == 1 ? (
-              <button disabled>Anterior</button>
-            ) : (
-              <button onClick={handleGetPrevHeroesList}>Anterior</button>
-            )}
-            <button onClick={handleGetNextHeroesList}>Próximo</button>
+            <button
+              disabled={pagination == 1}
+              onClick={handleGetPrevHeroesList}
+            >
+              Anterior
+            </button>
+
+            <button
+              disabled={pagination == total}
+              onClick={handleGetNextHeroesList}
+            >
+              Próximo
+            </button>
           </div>
-        </Main>
+        </>
       )}
-    </>
+    </Main>
   );
 };

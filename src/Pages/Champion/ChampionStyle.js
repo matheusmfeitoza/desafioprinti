@@ -22,6 +22,13 @@ export const SectionChamp = styled.section`
     width: 180px;
     height: 60px;
     align-self: flex-end;
+    background-color: rgb(175, 48, 13);
+    border: none;
+    border-radius: 4px;
+    color: white;
+  }
+  .btnBackToChampions:hover {
+    background-color: rgba(20, 20, 60, 0.8);
   }
 
   @media (max-width: 500px) {
@@ -29,11 +36,12 @@ export const SectionChamp = styled.section`
   }
 `;
 export const ContainerChamp = styled.div`
-  background-color: #eee;
+  background-color: rgba(0, 20, 30, 0.8);
   padding: 10px;
   max-width: 800px;
   margin: 80px auto;
   border-radius: 5px;
+  color: white;
 `;
 
 export const SectionChampComics = styled.section`
@@ -72,6 +80,7 @@ export const ComicsImgWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 600px;
   }
   .comicTitleAndNumberInfo h3 {
     font-size: 0.846rem;
@@ -82,5 +91,13 @@ export const ComicsImgWrapper = styled.div`
   .comicDescription {
     font-size: 0.785rem;
     margin: 10px;
+  }
+
+  @media (max-width: 500px) {
+    .comicTitleAndNumberInfo {
+      flex-direction: column;
+      gap: 5px;
+      width: initial;
+    }
   }
 `;

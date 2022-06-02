@@ -44,7 +44,7 @@ export const HomeStyle = styled.section`
 
   .userInput button {
     text-decoration: none;
-    background-color: #a73429;
+    background-color: rgb(175, 48, 13);
     padding: 5px;
     border-radius: 5px;
     color: #fff;
@@ -56,7 +56,7 @@ export const HomeStyle = styled.section`
   }
 
   .userInput button:hover {
-    background-color: #a73476;
+    background-color: rgba(20, 20, 60, 0.8);
   }
 
   /* mobile */

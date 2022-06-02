@@ -74,9 +74,12 @@ export const Champion = () => {
                   </div>
                   <div>
                     {comic.textObjects.length > 0 ? (
-                      <p className="comicDescription">
-                        {comic.textObjects[comic.textObjects.length - 1].text}
-                      </p>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: comic.textObjects.at(-1).text,
+                        }}
+                        className="comicDescription"
+                      />
                     ) : (
                       <p>Sem descrição</p>
                     )}

@@ -4,18 +4,15 @@
   box-sizing: border-box;
 }
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Noto Serif', serif;
-  font-family: 'Spectral', serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background:url('https://steamuserimages-a.akamaihd.net/ugc/1771572741903125825/D49869136E1D5DA74F7F0E95213A2CB8FF8FD43B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false')center center no-repeat ;
+  font-family: 'Roboto', sans-serif;
+  background-image: url("./Assets/background.jpg");
+  background-position: center ;
   background-size: cover;
+  /* background: rgb(175,48,13);
+  background: linear-gradient(90deg, rgba(175,48,13,0.7987570028011204) 27%, rgba(255,214,0,0.4906337535014006) 100%, rgba(121,71,9,0.4654236694677871) 100%); */
+  /* background:linear-gradient() center center no-repeat ;
+  background-size: cover;
+  object-fit: fill; */
+  
 } 
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
