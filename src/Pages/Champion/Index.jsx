@@ -12,7 +12,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getHeroComics } from "../../services/ApiHeroes";
 import { setHeroComicsFailure, setHeroComicsSucess } from "../../store/heroes";
 
-const Champion = () => {
+export const Champion = () => {
   const { heroes, publicK, ts, hash, comics, isLogged } = useSelector(
     (state) => state.heroes
   );
@@ -90,5 +90,3 @@ const Champion = () => {
     </ContainerChamp>
   );
 };
-
-export default Champion;

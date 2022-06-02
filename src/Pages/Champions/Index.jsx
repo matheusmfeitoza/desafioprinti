@@ -13,7 +13,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 let pagination = 1;
-const Champions = () => {
+export const Champions = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { heroes, isLogged, privateK, publicK, ts, hash, isLoading } =
@@ -125,5 +125,3 @@ const Champions = () => {
     </>
   );
 };
-
-export default Champions;

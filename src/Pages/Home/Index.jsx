@@ -12,7 +12,7 @@ import {
   setFailureAction,
 } from "../../store/heroes";
 
-const Home = () => {
+export const Home = () => {
   const dispatch = useDispatch();
   const { hasError, errorMessage, isLoading } = useSelector(
     (state) => state.heroes
@@ -68,7 +68,13 @@ const Home = () => {
         </p>
         <p>
           Você consegue gerar a sua chave neste link:{" "}
-          <a href="https://developer.marvel.com/">Developers Marvel</a>
+          <a
+            href="https://developer.marvel.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Developers Marvel
+          </a>
         </p>
         <div>
           <form className="userInput" onSubmit={handleUserGetApi}>
@@ -103,5 +109,3 @@ const Home = () => {
     </Container>
   );
 };
-
-export default Home;

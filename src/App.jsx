@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Champions from "./components/Champions/Champions";
-import Champion from "./components/Champions/Champion";
+import { Home, Champion, Champions } from "./Pages";
 
 function App() {
   return (
