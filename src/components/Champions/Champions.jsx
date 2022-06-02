@@ -3,7 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Main } from "./ChampionsStyle";
 import { useSelector, useDispatch } from "react-redux";
 import { getHeroes } from "../../services/ApiHeroes";
-import { setHeroesDataSucess, setHeroIsLoading } from "../../store/heroes";
+import {
+  setHeroesDataSucess,
+  setHeroIsLoading,
+  setApiValues,
+  setHeroesDataFailure,
+} from "../../store/heroes";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
