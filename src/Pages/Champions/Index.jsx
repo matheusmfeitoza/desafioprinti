@@ -23,7 +23,7 @@ export const Champions = () => {
     if (isLogged == false) {
       navigate("/");
     }
-  }, []);
+  }, [isLogged]);
 
   const handleGetNextHeroesList = () => {
     pagination = pagination + 10;
