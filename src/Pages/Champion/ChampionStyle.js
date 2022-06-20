@@ -9,7 +9,7 @@ export const SectionChamp = styled.section`
   margin: 10px 0;
 
   .heroImg {
-    max-width: 180px;
+    width: 120px;
   }
   .heroDescription {
     display: flex;
@@ -73,7 +73,7 @@ export const ComicsImgWrapper = styled.div`
   padding: 5px;
 
   img {
-    max-width: 80px;
+    width: 120px;
   }
 
   .comicTitleAndNumberInfo {
@@ -98,6 +98,12 @@ export const ComicsImgWrapper = styled.div`
       flex-direction: column;
       gap: 5px;
       width: initial;
+    }
+
+    img {
+      width: 100px;
+      height: 150px;
+      align-self: center;
     }
   }
 `;

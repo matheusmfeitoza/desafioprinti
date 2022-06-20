@@ -64,6 +64,7 @@ export const Champion = () => {
             return (
               <ComicsImgWrapper key={comic.id}>
                 <img
+                  className="heroImg"
                   src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                   alt="Hero Comic"
                 />

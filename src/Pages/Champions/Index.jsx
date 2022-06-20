@@ -20,7 +20,7 @@ export const Champions = () => {
     useSelector((state) => state.heroes);
 
   useEffect(() => {
-    if (isLogged == false) {
+    if (!isLogged) {
       navigate("/");
     }
   }, [isLogged]);
